@@ -1,7 +1,7 @@
 {
   "name": "saikatsarkar-resume",
   "version": "0.1.0",
-  "homepage": "https://Saikat2203.github.io/",
+  "homepage": "https://saikat2203.github.io/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",

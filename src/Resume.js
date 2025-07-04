@@ -1,5 +1,5 @@
 import React from 'react';
-import './Resume.css'; // Assuming you have a CSS file for styles
+import './Resume.css'; // Optional: if you have extra CSS
 
 const resumeData = {
   name: 'SAIKAT SARKAR',
@@ -13,14 +13,24 @@ const resumeData = {
             I prioritize implementing robust security best practices, maintaining stringent version control (Git, Bitbucket), and setting up comprehensive monitoring with CloudWatch. I'm committed to enhancing software delivery cycles and guaranteeing high system reliability. \
             I'm always open to connecting with fellow professionals and exploring new opportunities that align with my expertise. Feel free to reach out!",
   skills: [
-    'React',
-    'JavaScript (ES6+)',
-    'HTML5 & CSS3',
-    'Redux',
-    'TypeScript',
-    'REST APIs',
-    'Git & GitHub',
-    'Jest & Testing Library'
+    'CI/CD',
+    'Version Control',
+    'IaC',
+    'Containerization',
+    'Container Orchestration',
+    'Cloud Computing',
+    'Monitoring & Logging',
+    'Automation',
+    'Networking & Security',
+    'Security best practices',
+    'Artifact Management',
+    'API Management',
+    'JavaScript',
+    'Java',
+    'Python',
+    'Shell Scripting',
+    'SQL',
+    'JIRA'
   ],
   experience: [
     {
@@ -28,9 +38,11 @@ const resumeData = {
       role: 'Software Engineer II',
       period: 'Apr 2025 - Present',
       details: [
-        'Developed and maintained scalable React applications for enterprise clients.',
-        'Collaborated with designers and backend developers to deliver seamless user experiences.',
-        'Implemented state management using Redux and Context API.'
+        'Engaging with Japan, US and Europe teams to align on DevOps practices and standards.',
+        'Developing Jenkins shared libraries for standardized CI/CD pipelines.',
+        'Creating reusable Jenkins pipeline templates to streamline deployment processes.',
+        'Implemented infrastructure as code (IaC) using Terraform, ensuring scalable cloud deployments.',
+        'Integrating AWS services like ECS, Lambda, and S3 into CI/CD workflows.'
       ]
     },
     {
@@ -38,9 +50,13 @@ const resumeData = {
       role: 'Software Engineer I',
       period: 'Nov 2022 - Mar 2025',
       details: [
-        'Built responsive UI components with React and styled-components.',
-        'Optimized web applications for maximum speed and scalability.',
-        'Wrote unit and integration tests to ensure code quality.'
+        'Developed and maintained CI/CD pipelines using Jenkins for cloud and on-premise deployments.',
+        'Automated Jenkins pipeline creation using Python, reducing manual efforts by 30%.',
+        'Created and optimized Dockerfiles for containerized applications.',
+        'Managed artifacts with Nexus and enforced code quality standards using SonarQube & Veracode.',
+        'Wrote shell scripts to automate deployments on AWS ECS and Lambda.',
+        'Integrated Bitbucket for version control and improved repository management.',
+        'Onboarded and configured APIGEE products, streamlining API management.'
       ]
     },
     {
@@ -57,9 +73,26 @@ const resumeData = {
   ],
   education: [
     {
-      institution: 'University of California, Berkeley',
-      degree: 'B.S. in Computer Science',
-      period: '2015 - 2019'
+      institution: 'The Centre for Development of Advanced Computing (CDAC)',
+      degree: 'Post Graduate Diploma in Advanced Computing',
+      period: 'Mar 2022 - Sep 2022'
+    },
+    {
+      institution: 'Visvesvaraya Technological University (VTU)',
+      degree: 'B.E. in Mechanical Engineering',
+      period: '2014 - 2018'
+    },
+    {
+      institution: 'Kendriya Vidyalaya',
+      degree: 'Senior Secondary Education - Physics, Chemistry, Mathematics, and Biology',
+      board: 'CBSE',
+      period: '2013 - 2014'
+    },
+    {
+      institution: 'Kendriya Vidyalaya',
+      degree: 'Secondary Education',
+      board: 'CBSE',
+      period: '2011 - 2012'
     }
   ]
 };
@@ -69,88 +102,129 @@ function Resume() {
     <div
       style={{
         minHeight: '100vh',
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${process.env.PUBLIC_URL}/assets/stars-background.jpg)`,
-        backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        padding: '40px 0',
-        overflowX: 'hidden' // Prevent horizontal scroll
+        overflowX: 'hidden'
       }}
     >
-      {/* Navigation Bar */}
-      <nav
-        style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 10,
-          background: 'rgba(0,0,0,0.7)',
-          padding: '12px 0',
-          marginBottom: 24,
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 32,
-          borderRadius: 8,
-          width: '100%' // Make nav full width
-        }}
-      >
-        <a href="#about" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>About</a>
-        <a href="#experience" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Experience</a>
-        <a href="#education" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Education</a>
-        <a href="#skills" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Skills</a>
-        <a href="#contact" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Contact</a>
-        <a href="#certificates" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Certificates</a>
-      </nav>
+      {/* Name, Nav and Role Section with .webp background */}
       <div
         style={{
           width: '100%',
           fontFamily: 'Arial, sans-serif',
-          background: 'rgba(255,255,255,0.13)', // Match About box background
-          borderRadius: 8,                      // Match About box border radius
-          padding: 24,                          // Match About box padding
-          boxShadow: '0 4px 24px rgba(0,0,0,0.08)', // Match About box shadow
-          color: 'white',
+          borderRadius: 0, // No border radius
+          padding: 0,
+          boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+          color: 'black',
           textAlign: 'center',
-          marginBottom: 24                      // Optional: match section spacing
+          marginBottom: 24,
+          overflow: 'hidden',
+          minHeight: 320,
+          position: 'relative',
+          background: 'none'
         }}
       >
-        <h1 style={{ fontSize: '3rem', margin: 0, fontWeight: 700, letterSpacing: 2 }}>
-          {resumeData.name}
-        </h1>
-        <h2 style={{ fontSize: '2rem', margin: '16px 0 0 0', fontWeight: 400, letterSpacing: 1 }}>
-          {resumeData.title}
-        </h2>
-
-        {/* Download Resume Button */}
-        <div style={{ marginTop: 24 }}>
-          <button
-            onClick={handleResumeDownload}
-            style={{
-              display: 'inline-block',
-              padding: '10px 28px',
-              background: 'transparent',
-              color: '#ffd700',
-              borderRadius: 24, // round edge
-              fontWeight: 700,
-              fontSize: '1.1rem',
-              textDecoration: 'none',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
-              transition: 'background 0.2s, color 0.2s, border 0.2s',
-              border: '2px solid #ffd700',
-              cursor: 'pointer'
-            }}
-            onMouseOver={e => {
-              e.target.style.background = 'rgba(255,140,0,0.08)';
-              e.target.style.border = '2px solid orange';
-              e.target.style.color = 'orange';
-            }}
-            onMouseOut={e => {
-              e.target.style.background = 'transparent';
-              e.target.style.border = '2px solid #ffd700';
-              e.target.style.color = '#ffd700';
-            }}
-          >
-            Download Resume
-          </button>
+        {/* Full background image with overlay */}
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/devops-infinity.webp`}
+          alt="DevOps Background"
+          style={{
+            width: '100vw', // Cover 100% of viewport width
+            height: '100%',
+            objectFit: 'cover',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 0,
+            minHeight: 320,
+            borderRadius: 0, // No border radius
+            padding: 0
+          }}
+        />
+        {/* Light overlay */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100vw', // Match image width
+            height: '100%',
+            background: 'rgba(255,255,255,0.2)',
+            zIndex: 1,
+            borderRadius: 0, // No border radius
+            padding: 0
+          }}
+        />
+        {/* Nav Bar centered at 70% width */}
+        <nav
+          style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 10,
+            background: 'rgba(0,0,0,0.7)',
+            padding: '12px 0',
+            marginBottom: 24,
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 32,
+            borderRadius: 8,
+            width: '50%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            backdropFilter: 'blur(2px)'
+          }}
+        >
+          <a href="#about" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>About</a>
+          <a href="#experience" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Experience</a>
+          <a href="#education" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Education</a>
+          <a href="#skills" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Skills</a>
+          {/* <a href="#contact" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Contact</a> */}
+          <a href="#certificates" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Certificates</a>
+        </nav>
+        {/* Content */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          padding: 80
+        }}>
+          <h1 style={{ fontSize: '3rem', margin: 0, fontWeight: 700, letterSpacing: 2, color: '#fff', textShadow: '0 2px 8px rgba(0,0,0,0.18)' }}>
+            {resumeData.name}
+          </h1>
+          <h2 style={{ fontSize: '2.5rem', margin: '50px 0 0 0', fontWeight: 400, letterSpacing: 1, color: '#fff', textShadow: '0 2px 8px rgba(0,0,0,0.18)' }}>
+            {resumeData.title}
+          </h2>
+          {/* Download Resume Button */}
+          <div style={{ marginTop: 40 }}>
+            <button
+              onClick={handleResumeDownload}
+              style={{
+                display: 'inline-block',
+                padding: '10px 28px',
+                background: 'transparent',
+                color: '#fff',
+                borderRadius: 24,
+                fontWeight: 700,
+                fontSize: '1.5rem',
+                textDecoration: 'none',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
+                transition: 'background 0.2s, color 0.2s, border 0.2s',
+                border: '4px solid #fff',
+                cursor: 'pointer'
+              }}
+              onMouseOver={e => {
+                e.target.style.background = '#fff';
+                e.target.style.border = '4px solid #fff';
+                e.target.style.color = '#0074d9';
+              }}
+              onMouseOut={e => {
+                e.target.style.background = 'transparent';
+                e.target.style.border = '4px solid #fff';
+                e.target.style.color = '#fff';
+              }}
+            >
+              Download Resume
+            </button>
+          </div>
         </div>
       </div>
 
@@ -159,23 +233,22 @@ function Resume() {
         width: '100%',
         fontFamily: 'Arial, sans-serif',
         background: 'rgba(255,255,255,0.10)',
-        borderRadius: 0,
-        padding: 32,
+        padding: 0,
         boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
         color: 'white'
       }}>
         <section
           id="about"
           style={{
-            background: 'rgba(255,255,255,0.13)',
-            borderRadius: 8,
+            background: 'rgba(255,255,255,0.95)',
             padding: 24,
             marginBottom: 24,
             display: 'flex',
             flexDirection: 'row',
             gap: 32,
             alignItems: 'flex-start',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            color: '#222'
           }}
         >
           <div style={{ flex: 1 }}>
@@ -192,25 +265,26 @@ function Resume() {
               About Me
             </h3>
           </div>
-          <div style={{ flex: 3, paddingRight: 120 }}>
+          <div style={{ flex: 3 }}>
             <p style={{
               marginTop: 8,
               fontSize: '1.18rem',
               lineHeight: 1.7,
               fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
               letterSpacing: 0.2,
-              color: '#fff'
+              color: '#222',
+              marginRight: 80
             }}>{resumeData.summary}</p>
           </div>
         </section>
-        <section id="experience" style={{ background: 'rgba(255,255,255,0.19)', borderRadius: 8, padding: 24, marginBottom: 24 }}>
+        <section id="experience" style={{ background: 'rgba(240,240,240,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
           <h3
             style={{
               marginTop: 0,
               fontSize: '2.6rem',
               fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
               fontWeight: 400,
-              color: '#fff',
+              color: '#ffb347',
               letterSpacing: 1,
               textAlign: 'center'
             }}
@@ -232,13 +306,13 @@ function Resume() {
                     margin: 0,
                     fontSize: '1.3rem',
                     fontWeight: 600,
-                    color: '#ffd700',
+                    color: 'red',
                     fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif'
                   }}>
-                    {job.role} <span style={{ color: '#fff', fontWeight: 400 }}>@ {job.company}</span>
+                    {job.role} <span style={{ color: '#222', fontWeight: 400 }}>@ {job.company}</span>
                   </h4>
-                  <em style={{ color: '#bbb', fontSize: '1rem' }}>{job.period}</em>
-                  <ul style={{ marginTop: 8, marginBottom: 0, color: '#fff', fontSize: '1.08rem', lineHeight: 1.6 }}>
+                  <em style={{ color: '#888', fontSize: '1rem' }}>{job.period}</em>
+                  <ul style={{ marginTop: 8, marginBottom: 0, color: '#222', fontSize: '1.08rem', lineHeight: 1.6 }}>
                     {job.details.map((detail, i) => (
                       <li key={i}>{detail}</li>
                     ))}
@@ -248,35 +322,255 @@ function Resume() {
             ))}
           </div>
         </section>
-        <section id="education" style={{ background: 'rgba(255,255,255,0.22)', borderRadius: 8, padding: 24, marginBottom: 24 }}>
-          <h3>Education</h3>
-          {resumeData.education.map((edu, idx) => (
-            <div key={idx}>
-              <strong>{edu.institution}</strong>
-              <div>{edu.degree}</div>
-              <em>{edu.period}</em>
-            </div>
-          ))}
+        <section id="education" style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
+          <h3
+            style={{
+              marginTop: 0,
+              fontSize: '2.6rem',
+              fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
+              fontWeight: 400,
+              color: '#ffb347',
+              letterSpacing: 1,
+              textAlign: 'center'
+            }}
+          >
+            Education
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 32 }}>
+            {resumeData.education.map((edu, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
+                {/* Book logo image */}
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/logo-book.jpg`}
+                  alt="education"
+                  style={{ width: 32, height: 32, marginTop: 4 }}
+                />
+                {/* Education details */}
+                <div>
+                  <h4 style={{
+                    margin: 0,
+                    fontSize: '1.3rem',
+                    fontWeight: 600,
+                    color: 'rgb(0, 109, 252)',
+                    fontFamily: 'initial'
+                  }}>
+                    {edu.institution}
+                  </h4>
+                  <em style={{ color: '#888', fontSize: '1rem' }}>{edu.period}</em>
+                  <p> <span style={{ color: '#222', fontWeight: 400, fontSize: '1.25rem', fontFamily: 'initial' }}>{edu.degree}</span></p>
+                  {edu.board && (
+                    <div style={{ color: '#222', fontSize: '1.15rem', marginTop: 8, fontStyle: 'italic', fontFamily: 'inherit' }}>
+                      Board: {edu.board}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
-        <section id="contact" style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 8, padding: 24, marginBottom: 24 }}>
-          <h3>Contact</h3>
-          <p>
-            <strong>Email:</strong> {resumeData.contact.email}<br />
-            <strong>Phone:</strong> {resumeData.contact.phone}<br />
-            <strong>Location:</strong> {resumeData.contact.location}
-          </p>
+        {/* Skills Section */}
+        <section id="skills" style={{ background: 'rgba(240,240,240,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
+          <h3
+            style={{
+              marginTop: 0,
+              fontSize: '2.6rem',
+              fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
+              fontWeight: 400,
+              color: '#ffb347',
+              letterSpacing: 1,
+              textAlign: 'center'
+            }}
+          >
+            Skills
+          </h3>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 16,
+              marginTop: 24
+            }}
+          >
+            {resumeData.skills.map((skill, idx) => (
+              <div
+                key={idx}
+                style={{
+                  background: '#fff',
+                  color: '#0074d9',
+                  border: '2px solid #0074d9',
+                  borderRadius: 16,
+                  padding: '10px 22px',
+                  fontWeight: 600,
+                  fontSize: '1.1rem',
+                  margin: 4,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
+                  textAlign: 'center',
+                  minWidth: 100
+                }}
+              >
+                {skill}
+              </div>
+            ))}
+          </div>
         </section>
-        <section id="certificates" style={{ background: 'rgba(255,255,255,0.28)', borderRadius: 8, padding: 24 }}>
-          <h3>Certificates</h3>
-          <p>List your certificates here.</p>
+        {/* Certificates Section with badge images */}
+        <section id="certificates" style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 8, padding: 24, color: '#222', textAlign: 'center' }}>
+          <h3
+            style={{
+              marginTop: 0,
+              fontSize: '2.6rem',
+              fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
+              fontWeight: 400,
+              color: '#ffb347',
+              letterSpacing: 1,
+              textAlign: 'center'
+            }}
+          >
+            Certificates
+          </h3>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: 24,
+            marginTop: 24
+          }}>
+            {/* Example certificate badges, replace src and alt as needed */}
+            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="c0e5a990-39e6-449f-856a-ab42548bf729" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="e83631e7-4042-4d4e-8260-1cb8892c712d" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+          </div>
+        </section>
+         {/* Get in touch section */}
+        <section
+          style={{
+            background: '#e6f2ff',
+            borderRadius: 8,
+            padding: 32,
+            margin: '32px 0',
+            color: '#003366',
+            textAlign: 'center'
+          }}
+        >
+          <h3
+            style={{
+              marginTop: 0,
+              fontSize: '2.6rem',
+              fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
+              fontWeight: 400,
+              color: '#0074d9',
+              letterSpacing: 1,
+              textAlign: 'center'
+            }}
+          >
+            Get in touch
+          </h3>
+          <button
+            onClick={() => window.open('https://www.linkedin.com/in/saikat-sarkar-2203/', '_blank')}
+            style={{
+              padding: '12px 32px',
+              background: '#0074d9',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 24,
+              fontWeight: 700,
+              fontSize: '1rem',
+              cursor: 'pointer',
+              transition: 'background 0.2s, color 0.2s'
+            }}
+            onMouseOver={e => {
+              e.target.style.background = '#fff';
+              e.target.style.color = '#0074d9';
+              e.target.style.border = '2px solid #0074d9';
+            }}
+            onMouseOut={e => {
+              e.target.style.background = '#0074d9';
+              e.target.style.color = '#fff';
+              e.target.style.border = 'none';
+            }}
+          >
+            Connect on LinkedIn
+          </button>
         </section>
       </div>
+      {/* Footer Section */}
+      <div
+        style={{
+          width: '100%',
+          background: '#f5f7fa',
+          color: '#222',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '18px 32px',
+          fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
+          fontSize: '1rem',
+          borderTop: '1px solid #e0e0e0',
+          marginTop: 0,
+          overflowX: 'auto' // <-- Add this to prevent icons from being cut off
+        }}
+      >
+        <div>
+          © {new Date().getFullYear()} Saikat Sarkar. All rights reserved.
+        </div>
+        <div style={{ display: 'flex', gap: 15, alignItems: 'center', minWidth: 120 }}>
+          {/* GitHub */}
+          <a
+            href="https://github.com/Saikat2203"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            title="GitHub"
+          >
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/github-icon.png`}
+              alt="GitHub"
+              style={{ width: 28, height: 28, verticalAlign: 'middle', opacity: 0.8, transition: 'opacity 0.2s', objectFit: 'contain' }}
+              onMouseOver={e => (e.currentTarget.style.opacity = 1)}
+              onMouseOut={e => (e.currentTarget.style.opacity = 0.8)}
+            />
+          </a>
+          {/* Stack Overflow */}
+          <a
+            href="https://stackoverflow.com/users/11709937/saikat-sarkar"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            title="Stack Overflow"
+          >
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/stackoverflow-icon.webp`}
+              alt="Stack Overflow"
+              style={{ width: 28, height: 28, verticalAlign: 'middle', opacity: 0.8, transition: 'opacity 0.2s', objectFit: 'contain' }}
+              onMouseOver={e => (e.currentTarget.style.opacity = 1)}
+              onMouseOut={e => (e.currentTarget.style.opacity = 0.8)}
+            />
+          </a>
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/saikat2203/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            title="LinkedIn"
+          >
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/linkedin-icon.png`}
+              alt="LinkedIn"
+              style={{ width: 28, height: 28, verticalAlign: 'middle', opacity: 0.8, transition: 'opacity 0.2s', objectFit: 'contain' }}
+              onMouseOver={e => (e.currentTarget.style.opacity = 1)}
+              onMouseOut={e => (e.currentTarget.style.opacity = 0.8)}
+            />
+          </a>
+        </div>
+      </div>
+      {/* End of Footer Section */}
     </div>
   );
 }
 
 function handleResumeDownload() {
-  const resumeUrl = `${process.env.PUBLIC_URL}/resume.pdf`;
+  const resumeUrl = `${process.env.PUBLIC_URL}/assets/Saikat_Sarkar_CV.pdf`;
   fetch(resumeUrl, { method: 'HEAD' })
     .then(res => {
       if (res.ok) {
