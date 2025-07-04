@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Resume.css'; // Optional: if you have extra CSS
+import ArrowCircleUpSharpIcon from '@mui/icons-material/ArrowCircleUpSharp';
+import SchoolIcon from '@mui/icons-material/School';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+
 
 const resumeData = {
   name: 'SAIKAT SARKAR',
@@ -37,6 +41,7 @@ const resumeData = {
       company: 'Nissan Digital India LLP',
       role: 'Software Engineer II',
       period: 'Apr 2025 - Present',
+      location: 'Trivandrum, Kerala',
       details: [
         'Engaging with Japan, US and Europe teams to align on DevOps practices and standards.',
         'Developing Jenkins shared libraries for standardized CI/CD pipelines.',
@@ -49,6 +54,7 @@ const resumeData = {
       company: 'Nissan Digital India LLP',
       role: 'Software Engineer I',
       period: 'Nov 2022 - Mar 2025',
+      location: 'Trivandrum, Kerala',
       details: [
         'Developed and maintained CI/CD pipelines using Jenkins for cloud and on-premise deployments.',
         'Automated Jenkins pipeline creation using Python, reducing manual efforts by 30%.',
@@ -63,6 +69,7 @@ const resumeData = {
       company: 'Syndicate Auto Components',
       role: 'Project Co-ordinator',
       period: 'Jan 2019 - Sep 2021',
+      location: 'Rudrapur, Uttarakhand',
       details: [
         'Supported the Sr. Design Engineer in end-to-end product design and development.',
         'Handling client interactions and supporting project planning.',
@@ -98,6 +105,19 @@ const resumeData = {
 };
 
 function Resume() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button only when user is near the bottom (within 200px)
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const threshold = document.body.offsetHeight - 200;
+      setShowBackToTop(scrollPosition >= threshold);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div
       style={{
@@ -292,34 +312,73 @@ function Resume() {
             Experience
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 32 }}>
-            {resumeData.experience.map((job, idx) => (
-              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
-                {/* Milestone image */}
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/location-logo.png`}
-                  alt="milestone"
-                  style={{ width: 32, height: 32, marginTop: 4 }}
-                />
-                {/* Job details */}
-                <div>
-                  <h4 style={{
-                    margin: 0,
-                    fontSize: '1.3rem',
-                    fontWeight: 600,
-                    color: 'red',
-                    fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif'
-                  }}>
-                    {job.role} <span style={{ color: '#222', fontWeight: 400 }}>@ {job.company}</span>
-                  </h4>
-                  <em style={{ color: '#888', fontSize: '1rem' }}>{job.period}</em>
-                  <ul style={{ marginTop: 8, marginBottom: 0, color: '#222', fontSize: '1.08rem', lineHeight: 1.6 }}>
-                    {job.details.map((detail, i) => (
-                      <li key={i}>{detail}</li>
+            {/* Group jobs by company */}
+            {(() => {
+              // Group jobs by company
+              const companyMap = {};
+              resumeData.experience.forEach(job => {
+                if (!companyMap[job.company]) companyMap[job.company] = [];
+                companyMap[job.company].push(job);
+              });
+              return Object.entries(companyMap).map(([company, jobs], idx) => {
+                // Dynamically calculate total years/months for the company based on all job periods
+                const parseDate = str => {
+                  // Handles "Apr 2025" or "Present"
+                  if (!str || str.trim() === 'Present') return new Date();
+                  const [mon, year] = str.split(' ');
+                  const monthNum = {
+                    Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+                    Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+                  }[mon];
+                  return new Date(Number(year), monthNum, 1);
+                };
+                // Find min start and max end from all jobs at this company
+                let minStart = null, maxEnd = null;
+                jobs.forEach(job => {
+                  const [startStr, endStr] = job.period.split(' - ');
+                  const start = parseDate(startStr);
+                  const end = parseDate(endStr);
+                  if (!minStart || start < minStart) minStart = start;
+                  if (!maxEnd || end > maxEnd) maxEnd = end;
+                });
+                // Calculate total months
+                let months = (maxEnd.getFullYear() - minStart.getFullYear()) * 12 + (maxEnd.getMonth() - minStart.getMonth()) + 1;
+                const totalYears = Math.floor(months / 12);
+                const totalMonths = months % 12;
+                const totalStr = totalYears > 0
+                  ? `${totalYears} yr${totalYears > 1 ? 's' : ''}${totalMonths > 0 ? ` ${totalMonths} mo${totalMonths > 1 ? 's' : ''}` : ''}`
+                  : `${totalMonths} mo${totalMonths > 1 ? 's' : ''}`;
+
+                // Use location from the first job (customize if needed)
+                const location = jobs[0].location || resumeData.contact.location;
+
+                return (
+                  <div key={company}>
+                    <div  style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                      <WorkOutlineIcon style={{ fontSize: 28, color: '#0074d9' }} />
+                      <span style={{ fontSize: '1.35rem', fontWeight: 700, color: '#0074d9', fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif' }}>{company}</span>
+                    </div>
+                    <div style={{ color: '#888', fontSize: '1.08rem', marginBottom: 4, marginLeft: 40 }}>
+                      {totalStr}
+                      {location && <span style={{ marginLeft: 16, color: '#444' }}>| {location}</span>}
+                    </div>
+                    {jobs.map((job, jidx) => (
+                      <div key={jidx} style={{ marginTop: 18 }}>
+                        <div style={{ fontWeight: 600, fontSize: '1.15rem', color: '#d7263d', fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif', marginLeft: 40 }}>
+                          {job.role}
+                        </div>
+                        <div style={{ color: '#888', fontSize: '1rem', marginBottom: 4, marginLeft: 40 }}>{job.period}</div>
+                        <ul style={{ marginTop: 8, marginBottom: 0, color: '#222', fontSize: '1.08rem', lineHeight: 1.6, marginLeft: 20 }}>
+                          {job.details.map((detail, i) => (
+                            <li key={i}>{detail}</li>
+                          ))}
+                        </ul>
+                      </div>
                     ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+                  </div>
+                );
+              });
+            })()}
           </div>
         </section>
         <section id="education" style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
@@ -339,12 +398,8 @@ function Resume() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 32 }}>
             {resumeData.education.map((edu, idx) => (
               <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
-                {/* Book logo image */}
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/logo-book.jpg`}
-                  alt="education"
-                  style={{ width: 32, height: 32, marginTop: 4 }}
-                />
+                {/* School icon instead of image */}
+                <SchoolIcon style={{ fontSize: 32, color: '#0074d9', marginTop: 4 }} />
                 {/* Education details */}
                 <div>
                   <h4 style={{
@@ -441,7 +496,7 @@ function Resume() {
             <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="e83631e7-4042-4d4e-8260-1cb8892c712d" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
           </div>
         </section>
-         {/* Get in touch section */}
+        {/* Get in touch section */}
         <section
           style={{
             background: '#e6f2ff',
@@ -565,6 +620,43 @@ function Resume() {
         </div>
       </div>
       {/* End of Footer Section */}
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <div
+          style={{
+            position: 'fixed',
+            left: '50%',
+            bottom: 32,
+            transform: 'translateX(-50%)',
+            zIndex: 1000,
+          }}
+        >
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 24,
+              background: '#0074d9',
+              color: '#fff',
+              border: 'none',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+              cursor: 'pointer',
+              opacity: 0.85,
+              transition: 'opacity 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8
+            }}
+            onMouseOver={e => (e.currentTarget.style.opacity = 1)}
+            onMouseOut={e => (e.currentTarget.style.opacity = 0.85)}
+            aria-label="Back to top"
+          >
+            <ArrowCircleUpSharpIcon style={{ fontSize: 32, color: '#fff' }} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
