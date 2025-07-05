@@ -301,13 +301,18 @@ function Resume() {
                 fontWeight: 400, // Not bold
                 color: '#ffb347',
                 letterSpacing: 1,
-                textAlign: 'center'
+                textAlign: 'center',
+                borderBottom: '2.5px solid #ffb347',
+                width: 'fit-content',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                paddingBottom: 4,
+                marginBottom: 18
               }}
             >
               About Me
             </h3>
-          </div>
-          <div style={{ flex: 3 }}>
+            {/* Move About Me heading above summary */}
             <p style={{
               marginTop: 8,
               fontSize: '1.18rem',
@@ -328,7 +333,13 @@ function Resume() {
               fontWeight: 400,
               color: '#ffb347',
               letterSpacing: 1,
-              textAlign: 'center'
+              textAlign: 'center',
+              borderBottom: '2.5px solid #ffb347',
+              width: 'fit-content',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              paddingBottom: 4,
+              marginBottom: 18
             }}
           >
             Experience
@@ -412,7 +423,13 @@ function Resume() {
               fontWeight: 400,
               color: '#ffb347',
               letterSpacing: 1,
-              textAlign: 'center'
+              textAlign: 'center',
+              borderBottom: '2.5px solid #ffb347',
+              width: 'fit-content',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              paddingBottom: 4,
+              marginBottom: 18
             }}
           >
             Education
@@ -455,7 +472,13 @@ function Resume() {
               fontWeight: 400,
               color: '#ffb347',
               letterSpacing: 1,
-              textAlign: 'center'
+              textAlign: 'center',
+              borderBottom: '2.5px solid #ffb347',
+              width: 'fit-content',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              paddingBottom: 4,
+              marginBottom: 18
             }}
           >
             Skills
@@ -501,7 +524,13 @@ function Resume() {
               fontWeight: 400,
               color: '#ffb347',
               letterSpacing: 1,
-              textAlign: 'center'
+              textAlign: 'center',
+              borderBottom: '2.5px solid #ffb347',
+              width: 'fit-content',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              paddingBottom: 4,
+              marginBottom: 18
             }}
           >
             Certificates
