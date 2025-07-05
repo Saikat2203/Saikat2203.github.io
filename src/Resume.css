@@ -8,10 +8,10 @@ nav a {
   display: inline-block;
   color: white;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 200;
 }
 nav a:hover {
   background: rgba(255,255,255,0.25);
-  color: #ffd700;
+  color: rgb(235, 99, 8);
   text-decoration: none;
 }

@@ -4,7 +4,6 @@ import ArrowCircleUpSharpIcon from '@mui/icons-material/ArrowCircleUpSharp';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 
-
 const resumeData = {
   name: 'SAIKAT SARKAR',
   title: 'DevOps Engineer',
@@ -106,6 +105,7 @@ const resumeData = {
 
 function Resume() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [navOpen, setNavOpen] = React.useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -177,6 +177,7 @@ function Resume() {
         />
         {/* Nav Bar centered at 70% width */}
         <nav
+          className="main-nav"
           style={{
             position: 'sticky',
             top: 0,
@@ -188,18 +189,38 @@ function Resume() {
             justifyContent: 'center',
             gap: 32,
             borderRadius: 8,
-            width: '50%',
+            width: '100%',
             marginLeft: 'auto',
             marginRight: 'auto',
             backdropFilter: 'blur(2px)'
           }}
         >
-          <a href="#about" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>About</a>
-          <a href="#experience" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Experience</a>
-          <a href="#education" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Education</a>
-          <a href="#skills" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Skills</a>
-          {/* <a href="#contact" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Contact</a> */}
-          <a href="#certificates" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Certificates</a>
+          <button
+            className="hamburger"
+            aria-label="Toggle navigation"
+            onClick={() => setNavOpen(!navOpen)}
+            style={{
+              display: 'none',
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              fontSize: 28,
+              cursor: 'pointer',
+              position: 'absolute',
+              left: 16,
+              top: 28,
+              zIndex: 20
+            }}
+          >
+            &#9776;
+          </button>
+          <div className={`nav-links${navOpen ? ' open' : ''}`}>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#certificates">Certificates</a>
+          </div>
         </nav>
         {/* Content */}
         <div style={{
@@ -279,7 +300,8 @@ function Resume() {
                 fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
                 fontWeight: 400, // Not bold
                 color: '#ffb347',
-                letterSpacing: 1
+                letterSpacing: 1,
+                textAlign: 'center'
               }}
             >
               About Me
@@ -293,7 +315,7 @@ function Resume() {
               fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
               letterSpacing: 0.2,
               color: '#222',
-              marginRight: 80
+              marginRight: 5
             }}>{resumeData.summary}</p>
           </div>
         </section>
@@ -354,7 +376,7 @@ function Resume() {
 
                 return (
                   <div key={company}>
-                    <div  style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                       <WorkOutlineIcon style={{ fontSize: 28, color: '#0074d9' }} />
                       <span style={{ fontSize: '1.35rem', fontWeight: 700, color: '#0074d9', fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif' }}>{company}</span>
                     </div>
@@ -399,7 +421,7 @@ function Resume() {
             {resumeData.education.map((edu, idx) => (
               <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
                 {/* School icon instead of image */}
-                <SchoolIcon style={{ fontSize: 32, color: '#0074d9', marginTop: 4 }} />
+                <SchoolIcon style={{ fontSize: 32, color: 'black', marginTop: 4 }} />
                 {/* Education details */}
                 <div>
                   <h4 style={{
@@ -568,7 +590,7 @@ function Resume() {
         <div>
           © {new Date().getFullYear()} Saikat Sarkar. All rights reserved.
         </div>
-        <div style={{ display: 'flex', gap: 15, alignItems: 'center', minWidth: 120 }}>
+        <div style={{ display: 'flex', gap: 15, alignItems: 'right', minWidth: 150, marginRight: 20 }}>
           {/* GitHub */}
           <a
             href="https://github.com/Saikat2203"
@@ -603,7 +625,7 @@ function Resume() {
           </a>
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/in/saikat2203/"
+            href="https://www.linkedin.com/in/saikat-sarkar-2203/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ display: 'inline-flex', alignItems: 'center' }}
