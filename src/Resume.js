@@ -3,6 +3,7 @@ import './Resume.css'; // Optional: if you have extra CSS
 import ArrowCircleUpSharpIcon from '@mui/icons-material/ArrowCircleUpSharp';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import CodeIcon from '@mui/icons-material/Code';
 
 const resumeData = {
   name: 'SAIKAT SARKAR',
@@ -33,7 +34,8 @@ const resumeData = {
     'Python',
     'Shell Scripting',
     'SQL',
-    'JIRA'
+    'JIRA',
+    'AWS'
   ],
   experience: [
     {
@@ -77,6 +79,17 @@ const resumeData = {
       ]
     }
   ],
+
+  projects: [
+    {
+      name: "AWS Account Security Posture Automation",
+      description: "A hackathon project that builds an automated security posture solution using AWS Security Hub, Athena, S3, Event Bridge, SNS, Lambda, and QuickSight.",
+      tech: ["SecurityHub", "Lambda", "Athena", "Quicksight", "S3"],
+      link: "https://d3fxrgcpx8khqa.cloudfront.net/Projects/Hackathon_2025/Hackathon-Demo3.mp4",
+      achievement: "2nd Runner-up of the event."
+    }
+  ],
+
   education: [
     {
       institution: 'The Centre for Development of Advanced Computing (CDAC)',
@@ -414,7 +427,74 @@ function Resume() {
             })()}
           </div>
         </section>
-        <section id="education" style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
+        {/* Add Projects section here */}
+        <section id="projects" style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
+          <h3
+            style={{
+              marginTop: 0,
+              fontSize: '2.6rem',
+              fontFamily: 'Segoe UI, Arial, Helvetica, sans-serif',
+              fontWeight: 400,
+              color: '#ffb347',
+              letterSpacing: 1,
+              textAlign: 'center',
+              borderBottom: '2.5px solid #ffb347',
+              width: 'fit-content',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              paddingBottom: 4,
+              marginBottom: 18
+            }}
+          >
+            Projects
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32, marginTop: 32 }}>
+            {resumeData.projects.map((proj, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: 20 }}>
+                {/* Project icon instead of image */}
+                <CodeIcon style={{ fontSize: 32, color: '#0074d9' }} />
+                <div>
+                  <h4 style={{
+                    margin: 0,
+                    fontSize: '1.3rem',
+                    fontWeight: 600,
+                    color: 'rgb(0, 109, 252)',
+                    fontFamily: 'initial'
+                  }}>
+                    {proj.name}
+                  </h4>
+                  <div style={{ fontWeight: 600, fontSize: '1.18rem', color: '#0074d9', marginBottom: 6 }}>
+                    <div style={{ color: '#222', fontSize: '1.08rem', marginBottom: 6, marginTop: 6 }}>Description: {proj.description}</div>
+                    {proj.link && (
+                      <div style={{ marginBottom: 6 }}>
+                        <a
+                          href={proj.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: '#0074d9', textDecoration: 'underline', fontWeight: 500 }}
+                        >
+                          [Demo Video]
+                        </a>
+                      </div>
+                    )}
+                    {proj.tech && (
+                      <div style={{ color: '#555', fontSize: '0.98rem' }}>
+                        <strong>Tech:</strong> {proj.tech.join(', ')}
+                      </div>
+                    )}
+                    {proj.achievement && (
+                      <div style={{ color: '#d7263d', fontSize: '1rem', marginTop: 6 }}>
+                        <strong>Achievement: {proj.achievement}</strong>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="education" style={{ background: 'rgba(240,240,240,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
           <h3
             style={{
               marginTop: 0,
@@ -463,7 +543,7 @@ function Resume() {
           </div>
         </section>
         {/* Skills Section */}
-        <section id="skills" style={{ background: 'rgba(240,240,240,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
+        <section id="skills" style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 8, padding: 24, marginBottom: 24, color: '#222' }}>
           <h3
             style={{
               marginTop: 0,
@@ -515,7 +595,7 @@ function Resume() {
           </div>
         </section>
         {/* Certificates Section with badge images */}
-        <section id="certificates" style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 8, padding: 24, color: '#222', textAlign: 'center' }}>
+        <section id="certificates" style={{ background: 'rgba(240,240,240,0.95)', borderRadius: 8, padding: 24, color: '#222', textAlign: 'center' }}>
           <h3
             style={{
               marginTop: 0,
@@ -638,7 +718,7 @@ function Resume() {
           </a>
           {/* Stack Overflow */}
           <a
-            href="https://stackoverflow.com/users/11709937/saikat-sarkar"
+            href="https://stackoverflow.com/users/18612096/saikat-sarkar"
             target="_blank"
             rel="noopener noreferrer"
             style={{ display: 'inline-flex', alignItems: 'center' }}
